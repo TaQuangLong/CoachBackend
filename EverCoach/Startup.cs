@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EverCoach.DataManager;
 using EverCoach.Models;
+using EverCoach.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 
 namespace EverCoach
 {
@@ -28,7 +31,15 @@ namespace EverCoach
             // Add framework services.
             services.AddDbContext<CoachContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("CoachManagementConnection")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IDataRepository<Coach>, CoachManager>();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options=> {
+                    var resolver = options.SerializerSettings.ContractResolver;
+                    if (resolver != null)
+                        (resolver as DefaultContractResolver).NamingStrategy = null;
+                });
+
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,7 +50,7 @@ namespace EverCoach
             }
             else
             {
-                app.UseHsts();
+                app.UseHsts(); 
             }
             app.UseHttpsRedirection();
             app.UseMvc();

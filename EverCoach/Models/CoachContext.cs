@@ -14,6 +14,6 @@ namespace EverCoach.Models
         }
         public DbSet<Coach> Coaches { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host = locahost; Port=5432;Username=postgres;Password=123456;Database=CoachManagement");
+            => optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Username=postgres;Password=123456;Database=CoachManagement");
     }
 }
