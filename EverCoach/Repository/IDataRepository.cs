@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace EverCoach.Repository
 {
-    public interface IDataRepository<TEntity>
+    public interface IDataRepository<T>
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity Get(long id);
-        void Add(TEntity entity);
-        void Update(TEntity dbEntity, TEntity entity);
-        void Delete(TEntity entity);
+        IQueryable<T> FindAll();
+        IQueryable<T> FindByCondition(Expression<Func<T,bool>> expression);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        Task SaveAsync();
     }
 }
