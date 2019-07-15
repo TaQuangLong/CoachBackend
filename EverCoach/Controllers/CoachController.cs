@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EverCoach.Models;
 using EverCoach.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,75 +12,77 @@ namespace EverCoach.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[EnableCors("MyPolicy")]
     public class CoachController : ControllerBase
     {
-        private readonly IDataRepository<Coach> _dataRepository;
-        public CoachController(IDataRepository<Coach> dataRepository)
+        //private readonly IDataRepository<Coach> _dataRepository;
+        //public CoachController(IDataRepository<Coach> dataRepository)
+        //{
+        //    _dataRepository = dataRepository;
+        //}
+        private readonly CoachContext _context;
+        public CoachController(CoachContext context)
         {
-            _dataRepository = dataRepository;
+            _context = context;
+            if (_context.Coaches.Count() == 0)
+            {
+                //_context.Coaches.Add(new Coach { Name = "Germay", Address = "HaNoi", Age = 25, Dob = Convert.ToDateTime("01-01-1990"), PhoneNum = "09999999", Sex = false });
+                _context.SaveChanges();
+            }
         }
+       
         // GET: api/Coach
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<IEnumerable<Coach>>> GetCoaches()
         {
-            IEnumerable<Coach> coaches = _dataRepository.GetAll();
-            return Ok(coaches);
+            return await _context.Coaches.ToListAsync();
         }
 
         // GET: api/Coach/5
         [HttpGet("{id}")]
-        public IActionResult Get(long id)
+        public async Task<ActionResult<Coach>> GetCoach(long id)
         {
-            Coach coach = _dataRepository.Get(id);
+            var coach = await _context.Coaches.FindAsync(id);
             if (coach == null)
             {
-                return NotFound("The Coach record couldn't be found");
+                return NotFound();
             }
-            return Ok(coach);
+            return coach;
         }
 
         //POST: api/Coach
         [HttpPost]
-        public IActionResult Post([FromBody] Coach coach)
+        public async Task<ActionResult<Coach>> PostCoach(Coach item)
         {
-            if (coach == null)
-            {
-                return BadRequest("Coach is null.");
-            }
-            _dataRepository.Add(coach);
-            return CreatedAtRoute(
-                "Get",
-                new { Id = coach.Id },
-                coach);
+            _context.Coaches.Add(item);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCoach), new { id = item.Id }, item);
         }
 
         //PUT: api/Coach/5
         [HttpPut("{id}")]
-        public IActionResult Put(long id,[FromBody] Coach coach)
+        public async Task<IActionResult> PutCoach(long id, Coach item)
         {
-            if (coach == null)
+            if (id != item.Id)
             {
-                return BadRequest("Coach is null");
+                return BadRequest();
             }
-            Coach coachToUpdate = _dataRepository.Get(id);
-            if(coachToUpdate == null)
-            {
-                return NotFound("The Coach recod couldn't be found.");
-            }
-            _dataRepository.Update(coachToUpdate, coach);
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
             return NoContent();
         }
         //DELETE: api/Coach/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public async Task<IActionResult> DeleteCoach(long id)
         {
-            Coach coach = _dataRepository.Get(id);
-            if(coach == null)
+            var coach = await _context.Coaches.FindAsync(id);
+            if (coach == null)
             {
-                return NotFound("The Coach record couldn't found.");
+                return NotFound();
             }
-            _dataRepository.Delete(coach);
-            
+            _context.Coaches.Remove(coach);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
