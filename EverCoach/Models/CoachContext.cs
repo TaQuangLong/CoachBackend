@@ -13,6 +13,7 @@ namespace EverCoach.Models
         {
         }
         public DbSet<Coach> Coaches { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseNpgsql("Host = localhost; Port=5432;Username=postgres;Password=123456;Database=CoachManagement");
     }
