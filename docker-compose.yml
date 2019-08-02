@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  evercoach.api:
+    image: ${DOCKER_REGISTRY-}evercoachapi
+    build:
+      context: .
+      dockerfile: EverCoach/Dockerfile
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+

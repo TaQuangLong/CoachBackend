@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using EverCoach.Models;
-using EverCoach.Repository;
-using Microsoft.AspNetCore.Cors;
+using EverCoach.Api.Application.Commands;
+using EverCoach.Domain.AggregatesModel.CoachAggregate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,23 +15,10 @@ namespace EverCoach.Controllers
     //[EnableCors("MyPolicy")]
     public class CoachController : ControllerBase
     {
-        //private readonly IDataRepository<Coach> _dataRepository;
-        //public CoachController(IDataRepository<Coach> dataRepository)
-        //{
-        //    _dataRepository = dataRepository;
-        //}
-        private readonly CoachContext _context;
-        public CoachController(CoachContext context)
-        {
-            _context = context;
-            if (_context.Coaches.Count() == 0)
-            {
-                //_context.Coaches.Add(new Coach { Name = "Germay", Address = "HaNoi", Age = 25, Dob = Convert.ToDateTime("01-01-1990"), PhoneNum = "09999999", Sex = false });
-                _context.SaveChanges();
-            }
-        }
+        private readonly ICoachRepository _coachRepository;
        
         // GET: api/Coach
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Coach>>> GetCoaches()
         {
@@ -40,9 +27,9 @@ namespace EverCoach.Controllers
 
         // GET: api/Coach/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Coach>> GetCoach(long id)
+        public async Task<IActionResult<Coach>> GetCoach(Guid id)
         {
-            var coach = await _context.Coaches.FindAsync(id);
+            var coach = await _coachRepository.GetByIdAsync(id);
             if (coach == null)
             {
                 return NotFound();
@@ -52,12 +39,11 @@ namespace EverCoach.Controllers
 
         //POST: api/Coach
         [HttpPost]
-        public async Task<ActionResult<Coach>> PostCoach(Coach item)
+        public async Task<ActionResult> CreateCoach([FromBody] CreateCoachCommand command)
         {
-            _context.Coaches.Add(item);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetCoach), new { id = item.Id }, item);
+            var coach = new Coach(command.Name,command.Email,command.Age,command.PhoneNum);
+            _coachRepository.Add(coach);
+            return  Ok();
         }
 
         //PUT: api/Coach/5

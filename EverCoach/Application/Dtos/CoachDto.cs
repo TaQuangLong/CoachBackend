@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EverCoach.Models
+namespace EverCoach.Dtos
 {
-    public class Coach
+    public class CoachDto
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -25,4 +25,5 @@ namespace EverCoach.Models
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
     }
+ 
 }
