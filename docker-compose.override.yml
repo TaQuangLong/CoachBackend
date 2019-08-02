@@ -1,14 +1,15 @@
 version: '3.4'
 
 services:
+
   evercoach.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "5011:80"
+
   apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "5010:80"
-

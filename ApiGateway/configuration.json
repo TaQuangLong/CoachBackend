@@ -1,51 +1,15 @@
 ﻿{
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamPathTemplate": "/api/{version}{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "media-api",
+          "Host": "evercoach.api",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/{version}/media/{everything}",
-      "UpstreamHttpMethod": []
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "user-api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/user/{everything}",
-      "UpstreamHttpMethod": []
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "survey-api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/survey/{everything}",
-      "UpstreamHttpMethod": []
-    },
-    {
-      "DownstreamPathTemplate": "/api/{version}/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "emailing-api",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/api/{version}/email/{everything}",
+      "UpstreamPathTemplate": "/api/{version}/coach/{everything}",
       "UpstreamHttpMethod": []
     }
   ],

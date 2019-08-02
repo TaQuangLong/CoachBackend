@@ -8,6 +8,6 @@ namespace EverCoach.Domain.AggregatesModel.SeedWork
 {
     public interface IUnitOfWork:IDisposable
     {
-        Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -7,10 +7,10 @@ namespace EverCoach.Api.Application.Commands
 {
     public class CreateCoachCommand
     {
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public int Age { get; private set; }
-        public string PhoneNum { get; private set; }
+        public string Name { get;  set; }
+        public string Email { get;  set; }
+        public int Age { get;  set; }
+        public string PhoneNum { get;  set; }
         //public DateTime Dob { get; private set; }
     }
 }

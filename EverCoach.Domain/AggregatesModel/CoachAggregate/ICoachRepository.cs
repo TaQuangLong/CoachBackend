@@ -10,9 +10,9 @@ namespace EverCoach.Domain.AggregatesModel.CoachAggregate
     {
         Task CommitAsync();
 
-        Task<IList<Coach>> GetAllAsync();
+        Task<IEnumerable<Coach>> GetAllAsync();
 
-        Task<Coach> GetByIdAsync(Guid entityId);
+        Task<Coach> GetByIdAsync(int entityId);
 
         Coach Add(Coach entity);
         void Update(Coach entity);

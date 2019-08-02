@@ -10,65 +10,88 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EverCoach.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     //[EnableCors("MyPolicy")]
     public class CoachController : ControllerBase
     {
         private readonly ICoachRepository _coachRepository;
+        public CoachController(ICoachRepository coachRepository)
+        {
+            _coachRepository = coachRepository;
+        }
        
         // GET: api/Coach
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Coach>>> GetCoaches()
+        public async Task<IActionResult> GetCoaches()
         {
-            return await _context.Coaches.ToListAsync();
+            try
+            {
+                var coaches = await _coachRepository.GetAllAsync();
+                return new OkObjectResult(coaches);
+            }
+             catch(Exception ex)
+            {
+
+            }
+            //return Ok(coaches);
+            return new BadRequestObjectResult("false");
         }
 
         // GET: api/Coach/5
         [HttpGet("{id}")]
-        public async Task<IActionResult<Coach>> GetCoach(Guid id)
+        public async Task<IActionResult> GetCoach(int id)
         {
             var coach = await _coachRepository.GetByIdAsync(id);
             if (coach == null)
             {
                 return NotFound();
             }
-            return coach;
+            return Ok(coach);
         }
 
         //POST: api/Coach
         [HttpPost]
-        public async Task<ActionResult> CreateCoach([FromBody] CreateCoachCommand command)
+        public async Task<IActionResult> CreateCoach([FromBody] CreateCoachCommand command)
         {
             var coach = new Coach(command.Name,command.Email,command.Age,command.PhoneNum);
             _coachRepository.Add(coach);
+            try
+            {
+                await _coachRepository.CommitAsync();
+            }
+            catch(Exception ex)
+            {
+
+            }
             return  Ok();
         }
 
         //PUT: api/Coach/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCoach(long id, Coach item)
+        public async Task<IActionResult> UpdateCoach(int id, Coach item)
         {
             if (id != item.Id)
             {
                 return BadRequest();
             }
-            _context.Entry(item).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            var coach = await _coachRepository.GetByIdAsync(id);
+            _coachRepository.Update(coach);
+            await _coachRepository.UnitOfWork.SaveChangesAsync();
             return NoContent();
         }
         //DELETE: api/Coach/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCoach(long id)
+        public async Task<IActionResult> DeleteCoach(int id)
         {
-            var coach = await _context.Coaches.FindAsync(id);
+            var coach = await _coachRepository.GetByIdAsync(id);
             if (coach == null)
             {
                 return NotFound();
             }
-            _context.Coaches.Remove(coach);
-            await _context.SaveChangesAsync();
+            _coachRepository.Delete(coach);
+            await _coachRepository.UnitOfWork.SaveChangesAsync();
             return NoContent();
         }
     }

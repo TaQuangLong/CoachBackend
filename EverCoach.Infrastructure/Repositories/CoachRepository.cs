@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EverCoach.Infrastructure.Repositories
@@ -31,12 +32,12 @@ namespace EverCoach.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IList<Coach>> GetAllAsync()
+        public async Task<IEnumerable<Coach>> GetAllAsync()
         {
-            return await _context.Set<Coach>().ToListAsync();
+            return await _context.Coaches.ToListAsync();
         }
 
-        public async Task<Coach> GetByIdAsync(Guid entityId)
+        public async Task<Coach> GetByIdAsync(int entityId)
         {
             return await _context.Set<Coach>().FindAsync(entityId);
         }

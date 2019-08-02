@@ -37,29 +37,7 @@ namespace ApiGateway
                 });
             });
 
-            var identityUrl = _configuration.GetValue<string>("IdentityUrl");
-            services.AddAuthentication(
-                options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-                })
-                .AddJwtBearer("IdentityApiKey", x =>
-                {
-                    x.Authority = identityUrl;
-                    x.RequireHttpsMetadata = false;
-                    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                    {
-                        ValidAudiences = new[] {
-                            "emailing",
-                            "medias",
-                            "surveys",
-                            "users"
-                        }
-                    };
-                });
-
+           
             services.AddOcelot();
         }
 

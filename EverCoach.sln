@@ -5,19 +5,21 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Api", "EverCoach\EverCoach.Api.csproj", "{E0AF9DB5-0CA1-4423-8B13-47D9888215A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverCoach.Domain", "EverCoach.Domain\EverCoach.Domain.csproj", "{82470259-9427-4F78-A132-945B8211C3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Domain", "EverCoach.Domain\EverCoach.Domain.csproj", "{82470259-9427-4F78-A132-945B8211C3FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverCoach.Infrastructure", "EverCoach.Infrastructure\EverCoach.Infrastructure.csproj", "{784643D5-E1E1-4519-B7B8-AC33D680DD59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Infrastructure", "EverCoach.Infrastructure\EverCoach.Infrastructure.csproj", "{784643D5-E1E1-4519-B7B8-AC33D680DD59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{099F2142-213D-4EB7-BA69-F76060B015BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgm.Core", "Dgm.Core\Dgm.Core.csproj", "{FD3B5C8F-F509-47CC-A546-9F453072CBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dgm.Core", "Dgm.Core\Dgm.Core.csproj", "{FD3B5C8F-F509-47CC-A546-9F453072CBCA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{1CD1DA68-CF50-49C9-8714-41FD311D21A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coaches", "coaches", "{10DCF9F6-EFF1-4C84-8514-2E031D80E030}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F47867FF-EBF2-4468-BB44-EF325F3580C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F47867FF-EBF2-4468-BB44-EF325F3580C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F47867FF-EBF2-4468-BB44-EF325F3580C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F47867FF-EBF2-4468-BB44-EF325F3580C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
