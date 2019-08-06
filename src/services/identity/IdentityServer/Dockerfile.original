@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
+WORKDIR /src
+COPY ["src/services/identity/IdentityServer/IdentityServer.csproj", "src/services/identity/IdentityServer/"]
+COPY ["../IdentityServer.Infrastructure/IdentityServer.Infrastructure.csproj", "../IdentityServer.Infrastructure/"]
+RUN dotnet restore "src/services/identity/IdentityServer/IdentityServer.csproj"
+COPY . .
+WORKDIR "/src/src/services/identity/IdentityServer"
+RUN dotnet build "IdentityServer.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "IdentityServer.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "IdentityServer.dll"]

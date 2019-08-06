@@ -6,10 +6,19 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "5011:80"
+      - "5511:80"
 
   apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "5010:80"
+      - "5510:80"
+
+  identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5500:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

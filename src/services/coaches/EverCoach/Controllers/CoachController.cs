@@ -24,7 +24,7 @@ namespace EverCoach.Controllers
         // GET: api/Coach
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetCoaches()
+        public async Task<IActionResult> Get()
         {
             try
             {
