@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Api", "src\services\EverCoach\EverCoach.Api.csproj", "{E0AF9DB5-0CA1-4423-8B13-47D9888215A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Api", "src\services\coaches\EverCoach\EverCoach.Api.csproj", "{E0AF9DB5-0CA1-4423-8B13-47D9888215A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Domain", "src\services\EverCoach.Domain\EverCoach.Domain.csproj", "{82470259-9427-4F78-A132-945B8211C3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Domain", "src\services\coaches\EverCoach.Domain\EverCoach.Domain.csproj", "{82470259-9427-4F78-A132-945B8211C3FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Infrastructure", "src\services\EverCoach.Infrastructure\EverCoach.Infrastructure.csproj", "{784643D5-E1E1-4519-B7B8-AC33D680DD59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Infrastructure", "src\services\coaches\EverCoach.Infrastructure\EverCoach.Infrastructure.csproj", "{784643D5-E1E1-4519-B7B8-AC33D680DD59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{099F2142-213D-4EB7-BA69-F76060B015BC}"
 EndProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coaches", "coaches", "{10DC
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F47867FF-EBF2-4468-BB44-EF325F3580C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "src\services\apigateways\ApiGateway\ApiGateway.csproj", "{EA08226E-F22E-46DA-9547-ED52DCDFF7BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7E4F705D-26CC-4E7B-8787-49AE1D20A2B9}"
 EndProject
@@ -32,6 +32,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskQueue", "..\..\..\DOMAINDRIVENDESIGN\est-backend\src\building-blocks\SimpleTaskQueue\SimpleTaskQueue.csproj", "{8C28AAC6-09A0-4C3D-A1E6-85ADB59AC37C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHost.Customization", "..\..\..\DOMAINDRIVENDESIGN\est-backend\src\building-blocks\WebHost.Customization\WebHost.Customization.csproj", "{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{434A87E7-293B-420A-9586-F614D7F1E363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\services\identity\IdentityServer\IdentityServer.csproj", "{67969C83-64FE-4EB6-BD43-F12D7193D0F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,10 @@ Global
 		{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67969C83-64FE-4EB6-BD43-F12D7193D0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67969C83-64FE-4EB6-BD43-F12D7193D0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67969C83-64FE-4EB6-BD43-F12D7193D0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67969C83-64FE-4EB6-BD43-F12D7193D0F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +101,8 @@ Global
 		{E323A4B2-03A5-492C-994F-EA2300EC0C97} = {7E4F705D-26CC-4E7B-8787-49AE1D20A2B9}
 		{8C28AAC6-09A0-4C3D-A1E6-85ADB59AC37C} = {E323A4B2-03A5-492C-994F-EA2300EC0C97}
 		{28CAD7FA-8D49-4A2E-91FC-39B38DF93603} = {E323A4B2-03A5-492C-994F-EA2300EC0C97}
+		{434A87E7-293B-420A-9586-F614D7F1E363} = {1CD1DA68-CF50-49C9-8714-41FD311D21A3}
+		{67969C83-64FE-4EB6-BD43-F12D7193D0F7} = {434A87E7-293B-420A-9586-F614D7F1E363}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40E87901-6138-41AF-81BA-397623DF8F2D}
