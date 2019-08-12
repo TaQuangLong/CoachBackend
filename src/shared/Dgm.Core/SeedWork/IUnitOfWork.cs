@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EverCoach.Domain.AggregatesModel.SeedWork
+namespace Dgm.Core.SeedWork
 {
     public interface IUnitOfWork:IDisposable
     {

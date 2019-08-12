@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverCoach.Infrastructure", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{099F2142-213D-4EB7-BA69-F76060B015BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dgm.Core", "src\Dgm.Core\Dgm.Core.csproj", "{FD3B5C8F-F509-47CC-A546-9F453072CBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dgm.Core", "src\shared\Dgm.Core\Dgm.Core.csproj", "{FD3B5C8F-F509-47CC-A546-9F453072CBCA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{1CD1DA68-CF50-49C9-8714-41FD311D21A3}"
 EndProject
@@ -25,19 +25,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7E4F705D-26C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apigateways", "apigateways", "{11C15CB8-82DF-4E1A-85DC-6E3E1C01A3D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "..\..\..\DOMAINDRIVENDESIGN\est-backend\src\building-blocks\EventBus\EventBus.csproj", "{FA65E065-F452-41E6-AE88-B6CA7AD32B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\building-blocks\EventBus\EventBus.csproj", "{FA65E065-F452-41E6-AE88-B6CA7AD32B68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{E323A4B2-03A5-492C-994F-EA2300EC0C97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskQueue", "..\..\..\DOMAINDRIVENDESIGN\est-backend\src\building-blocks\SimpleTaskQueue\SimpleTaskQueue.csproj", "{8C28AAC6-09A0-4C3D-A1E6-85ADB59AC37C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTaskQueue", "src\building-blocks\SimpleTaskQueue\SimpleTaskQueue.csproj", "{8C28AAC6-09A0-4C3D-A1E6-85ADB59AC37C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHost.Customization", "..\..\..\DOMAINDRIVENDESIGN\est-backend\src\building-blocks\WebHost.Customization\WebHost.Customization.csproj", "{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebHost.Customization", "src\building-blocks\WebHost.Customization\WebHost.Customization.csproj", "{28CAD7FA-8D49-4A2E-91FC-39B38DF93603}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{434A87E7-293B-420A-9586-F614D7F1E363}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "src\services\identity\IdentityServer\IdentityServer.csproj", "{67969C83-64FE-4EB6-BD43-F12D7193D0F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Infrastructure", "..\IdentityServer.Infrastructure\IdentityServer.Infrastructure.csproj", "{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Infrastructure", "src\services\identity\IdentityServer.Infrastructure\IdentityServer.Infrastructure.csproj", "{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDgm", "src\shared\SharedDgm\SharedDgm.csproj", "{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{434A87E7-293B-420A-9586-F614D7F1E363} = {1CD1DA68-CF50-49C9-8714-41FD311D21A3}
 		{67969C83-64FE-4EB6-BD43-F12D7193D0F7} = {434A87E7-293B-420A-9586-F614D7F1E363}
 		{BC3EA2F4-7A8D-4E06-BF3B-0EA52A5AD698} = {434A87E7-293B-420A-9586-F614D7F1E363}
+		{64436843-6BAA-49F7-8C5B-D12F6EB2ED7A} = {099F2142-213D-4EB7-BA69-F76060B015BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40E87901-6138-41AF-81BA-397623DF8F2D}

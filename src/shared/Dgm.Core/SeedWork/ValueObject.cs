@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EverCoach.Domain.AggregatesModel.SeedWork
+namespace Dgm.Core.SeedWork
 {
     public abstract class ValueObject
     {

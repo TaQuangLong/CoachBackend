@@ -33,10 +33,8 @@ namespace EverCoach.Controllers
             }
              catch(Exception ex)
             {
-
+                throw ex;
             }
-            //return Ok(coaches);
-            return new BadRequestObjectResult("false");
         }
 
         // GET: api/Coach/5
@@ -63,36 +61,27 @@ namespace EverCoach.Controllers
             }
             catch(Exception ex)
             {
-
+                throw ex;
             }
             return  Ok();
         }
 
         //PUT: api/Coach/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCoach(int id, Coach item)
+        public async Task<IActionResult> UpdateCoach(int id, [FromBody]UpdateCoachCommand item)
         {
-            if (id != item.Id)
-            {
-                return BadRequest();
-            }
             var coach = await _coachRepository.GetByIdAsync(id);
-            _coachRepository.Update(coach);
-            await _coachRepository.UnitOfWork.SaveChangesAsync();
-            return NoContent();
+            coach.Update(item.Name,item.Email);
+            await _coachRepository.CommitAsync();
+            return Ok();
         }
         //DELETE: api/Coach/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCoach(int id)
         {
-            var coach = await _coachRepository.GetByIdAsync(id);
-            if (coach == null)
-            {
-                return NotFound();
-            }
-            _coachRepository.Delete(coach);
-            await _coachRepository.UnitOfWork.SaveChangesAsync();
-            return NoContent();
+            _coachRepository.Delete(id);
+            await _coachRepository.CommitAsync();
+            return Ok();
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using EverCoach.Domain.AggregatesModel.SeedWork;
+﻿using Dgm.Core.SeedWork;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EverCoach.Domain.AggregatesModel.CoachAggregate
 {
@@ -12,6 +10,7 @@ namespace EverCoach.Domain.AggregatesModel.CoachAggregate
         public string Email { get; private set; }
         public int Age { get; private set; }
         public string PhoneNum { get; private set; }
+        //public string Address { get; private set; }
         //public DateTime Dob { get; private set; }
 
         //private readonly List<Coach> _coaches;
@@ -27,7 +26,7 @@ namespace EverCoach.Domain.AggregatesModel.CoachAggregate
         }
 
        
-        public void Update(string id, string name, string email, int age, string phoneNum, DateTime dob)
+        public void Update(string name, string email, int age, string phoneNum)
         {
             Name = name;
             Email = email;
@@ -35,10 +34,16 @@ namespace EverCoach.Domain.AggregatesModel.CoachAggregate
             PhoneNum = phoneNum;
             //Dob = dob;
         }
-        
-        public void GetCoach()
+        public void Update(string name)
         {
-
+            Name = name;
         }
+     
+        public void Update(string name, string email)
+        {
+            Name = name;
+            Email = email;
+        }
+
     }
 }
